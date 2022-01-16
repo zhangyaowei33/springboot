@@ -44,10 +44,11 @@ public class Result<T> {
     Result<T> result = new Result<>();
     result.setCode("0");
     result.setMsg("成功");
+    result.setData(data);
     return result;
     }
 
-    public static Result srror(String code,String msg){
+    public static Result error(String code,String msg){
     Result result = new Result<>();
     result.setCode(code);
     result.setMsg(msg);
