@@ -21,6 +21,17 @@ public class UserController {
     @Resource
     UserMapper userMapper;
 
+    @PostMapping("/login")//新增保存
+    public Result<?> login(@RequestBody User user){
+        User res = userMapper.selectOne(Wrappers.<User>lambdaQuery().eq(User::getUsername,user.getUsername()).eq(User::getPassword,user.getPassword()));
+        if(res == null){
+            return Result.error("-1","用户名或密码错误");
+        }else{
+            return Result.success();
+        }
+
+    }
+
     @PostMapping("/save")//新增保存
     public Result<?> save(@RequestBody User user){
         if(user.getPassword() == null){
