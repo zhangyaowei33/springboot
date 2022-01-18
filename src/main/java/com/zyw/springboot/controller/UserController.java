@@ -21,7 +21,7 @@ public class UserController {
     @Resource
     UserMapper userMapper;
 
-    @PostMapping("/login")//新增保存
+    @PostMapping("/login")//用户登录
     public Result<?> login(@RequestBody User user){
         User res = userMapper.selectOne(Wrappers.<User>lambdaQuery().eq(User::getUsername,user.getUsername()).eq(User::getPassword,user.getPassword()));
         if(res == null){
@@ -29,6 +29,19 @@ public class UserController {
         }else{
             return Result.success();
         }
+    }
+
+    @PostMapping("/register")//用户注册
+    public Result<?> register(@RequestBody User user){
+        User res = userMapper.selectOne(Wrappers.<User>lambdaQuery().eq(User::getUsername,user.getUsername()));
+        if(res != null){
+            return Result.error("-1","用户名重复");
+        }
+        if(user.getPassword() == null){
+            user.setPassword("123456");
+        }
+        userMapper.insert(user);
+        return Result.success();
 
     }
 
