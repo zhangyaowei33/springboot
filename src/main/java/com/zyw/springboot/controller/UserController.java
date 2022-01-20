@@ -70,7 +70,7 @@ public class UserController {
     }
 
     @GetMapping
-    public Result<?> fingPage(@RequestParam(defaultValue = "1") Integer pageNum,
+    public Result<?> findPage(@RequestParam(defaultValue = "1") Integer pageNum,
                               @RequestParam(defaultValue = "10") Integer pageSize,
                               @RequestParam(defaultValue = "") String search){
         LambdaQueryWrapper<User> wrapper = Wrappers.<User>lambdaQuery();
