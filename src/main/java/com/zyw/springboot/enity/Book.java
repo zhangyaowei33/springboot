@@ -18,6 +18,7 @@ public class Book {
     private BigDecimal price;
     private String author;
     private Date createTime;
+    private String cover;
 
 
 }
