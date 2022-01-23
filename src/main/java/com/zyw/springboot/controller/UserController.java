@@ -31,6 +31,11 @@ public class UserController {
         }
     }
 
+    @GetMapping("/{id}")
+    public Result<?> getByid(@PathVariable Long id){
+        return Result.success(userMapper.selectById(id));
+    }
+
     @PostMapping("/register")//用户注册
     public Result<?> register(@RequestBody User user){
         User res = userMapper.selectOne(Wrappers.<User>lambdaQuery().eq(User::getUsername,user.getUsername()));
