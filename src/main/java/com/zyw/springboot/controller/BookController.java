@@ -9,9 +9,11 @@ import com.zyw.springboot.enity.Book;
 import com.zyw.springboot.enity.User;
 import com.zyw.springboot.mapper.BookMapper;
 import com.zyw.springboot.mapper.UserMapper;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 
 @RestController
@@ -38,6 +40,11 @@ public class BookController {
     @DeleteMapping("/delete/{id}")//删除
     public Result<?> delete(@PathVariable Long id){
         bookMapper.deleteById(id);
+        return Result.success();
+    }
+    @PostMapping("/deleteBatch")
+    public Result<?> deleteBath(@RequestBody  List<Integer> ids){
+        bookMapper.deleteBatchIds(ids);
         return Result.success();
     }
 

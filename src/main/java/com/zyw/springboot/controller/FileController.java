@@ -26,6 +26,9 @@ public class FileController {
     private String port;
 
     private static final String ip = "http://localhost";
+//    @Value("101.43.154.22")
+//    private String ip;
+
     /**
      * 上传接口
      * @param file
@@ -45,6 +48,8 @@ public class FileController {
         String rootFilePath = System.getProperty("user.dir") + "/springboot/src/main/resources/files/" + flag + "_" + originalFilename;//获取当前文件路径
         FileUtil.writeBytes(file.getBytes(), rootFilePath); //把文件写到上传的路径
         return Result.success(ip + ":" + port + "/files/" + flag); //返回结果URL
+//        return Result.success("https://" + ip + ":" + port + "/files/" + flag); //返回结果URL
+
     }
 
     /**
